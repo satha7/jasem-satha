@@ -59,12 +59,6 @@ export default function Hero() {
             <h3 className="mb-2 text-2xl font-black text-white">مجموعة سطحات الرياض</h3>
             <p className="text-slate-400">نحن فريق متكامل نغطي جميع أحياء الرياض بسعر مناسب لك وسرعة استثنائية (10 دقائق).</p>
           </div>
-          
-          <div className="flex-1 rounded-[2rem] border border-slate-800 bg-slate-800/50 p-8 shadow-xl backdrop-blur-sm">
-            <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Google Ads Partner</p>
-            <h4 className="text-lg font-extrabold text-slate-200">موقع متوافق مع كافة سياسات جوجل</h4>
-            <p className="mt-2 text-sm text-slate-400">نلتزم بأعلى معايير المصداقية والشفافية في تقديم الأسعار والخدمات للعملاء.</p>
-          </div>
         </div>
       </div>
     </div>
