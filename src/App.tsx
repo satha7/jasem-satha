@@ -31,7 +31,7 @@ function HomePage() {
           "description": "أسرع خدمة سطحة في الرياض لنقل السيارات، سطحات هيدروليك وعادية متوفرة 24 ساعة.",
           "telephone": CONTACT_INFO.phone,
           "areaServed": "Riyadh, Saudi Arabia",
-          "url": "https://riyadh-tow.sa",
+          "url": "https://sathat24.shop/",
           "image": "https://i.postimg.cc/SsrpCX0m/stht-hydrwlyk-fy-altryq.png",
           "priceRange": "$$"
         })}

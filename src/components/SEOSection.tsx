@@ -13,6 +13,7 @@ export default function SEOSection() {
           {RIYADH_REGIONS.map((region, idx) => (
             <motion.div
               key={idx}
+              id={`region-${idx}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
