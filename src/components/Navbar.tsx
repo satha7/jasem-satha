@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Truck, Phone, ChevronDown } from 'lucide-react';
+import { Phone, ChevronDown } from 'lucide-react';
 import { CONTACT_INFO, SPECIAL_SERVICES, RIYADH_REGIONS } from '../constants';
 
 export default function Navbar() {
@@ -52,8 +52,13 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-24 items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand text-slate-950 shadow-lg shadow-brand/20">
-              <Truck size={28} />
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white overflow-hidden shadow-lg shadow-brand/20">
+              <img 
+                src="https://i.postimg.cc/DZ2d3wKc/Chat-GPT-Image-25-abryl-2026-03-29-33-s-(1).png" 
+                alt="لوجو سطحة الرياض" 
+                className="h-full w-full object-contain p-1"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <a href="/">
               <div>

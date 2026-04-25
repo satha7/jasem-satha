@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Truck } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 
 export default function Footer() {
@@ -8,8 +7,13 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row pb-12 border-b border-slate-900 mb-8">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand text-slate-950">
-              <Truck size={24} />
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white overflow-hidden">
+              <img 
+                src="https://i.postimg.cc/DZ2d3wKc/Chat-GPT-Image-25-abryl-2026-03-29-33-s-(1).png" 
+                alt="لوجو سطحة الرياض" 
+                className="h-full w-full object-contain p-1"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <span className="text-2xl font-black tracking-tight">
               سطحة <span className="text-brand">الرياض</span>
