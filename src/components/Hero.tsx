@@ -1,8 +1,24 @@
-import { motion } from 'motion/react';
-import { Phone, ChevronLeft, MapPin, Truck } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { useState, useEffect } from 'react';
+import { Phone, MapPin } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 
+const IMAGES = [
+  "https://i.postimg.cc/KjpSpd8Y/Chat-GPT-Image-10-abryl-2026-03-12-42-m.png",
+  "https://i.postimg.cc/cHmNwKq1/stht-twjyh-syart-fy-alsharʿ.png",
+  "https://i.postimg.cc/SsrpCX0m/stht-hydrwlyk-fy-altryq.png"
+];
+
 export default function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
+    }, 5000); // Change image every 5 seconds
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8" id="hero">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -13,18 +29,27 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="relative col-span-1 flex flex-col justify-end overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 shadow-2xl lg:col-span-2 lg:h-[480px]"
         >
-          {/* Main Hero Image */}
-          <img 
-            src="https://i.postimg.cc/SsrpCX0m/stht-hydrwlyk-fy-altryq.png" 
-            alt="سطحة هيدروليك في الطريق الرياض" 
-            className="absolute inset-0 h-full w-full object-cover object-center opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-          />
+          {/* Main Hero Image Slider */}
+          <AnimatePresence mode="wait">
+            <motion.img 
+              key={currentIndex}
+              src={IMAGES[currentIndex]} 
+              alt="سطحة هيدروليك في الطريق الرياض" 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0 h-full w-full object-contain md:object-cover object-center transition-opacity duration-300"
+              referrerPolicy="no-referrer"
+            />
+          </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
           
           <div className="relative z-10">
             <div className="mb-4 flex flex-wrap gap-3">
               <span className="rounded-full bg-brand px-4 py-1 text-xs font-black text-slate-900 shadow-lg shadow-brand/20">خبرة 10 سنوات</span>
               <span className="rounded-full bg-white/10 backdrop-blur-md px-4 py-1 text-xs font-black text-white border border-white/20">#سطحة_هيدروليك</span>
+              <span className="rounded-full bg-white/10 backdrop-blur-md px-4 py-1 text-xs font-black text-white border border-white/20">#سطحة_عادية</span>
             </div>
             
             <h2 className="mb-4 text-4xl font-black leading-tight text-white sm:text-6xl text-shadow-sm">
@@ -47,6 +72,16 @@ export default function Hero() {
                 <span>اتصل الآن: {CONTACT_INFO.phone}</span>
               </motion.a>
             </div>
+          </div>
+
+          {/* Slider Indicators */}
+          <div className="absolute top-8 left-8 flex gap-2 z-20">
+            {IMAGES.map((_, idx) => (
+              <div 
+                key={idx}
+                className={`h-1.5 w-6 rounded-full transition-all duration-300 ${currentIndex === idx ? 'bg-brand w-10' : 'bg-white/20'}`}
+              />
+            ))}
           </div>
         </motion.div>
 
