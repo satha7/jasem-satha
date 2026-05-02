@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Phone, MapPin } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
+import { handleCallConversion } from '../lib/gtag';
 
 const IMAGES = [
   "https://i.postimg.cc/KjpSpd8Y/Chat-GPT-Image-10-abryl-2026-03-12-42-m.png",
@@ -66,6 +67,10 @@ export default function Hero() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href={`tel:${CONTACT_INFO.phone}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCallConversion(`tel:${CONTACT_INFO.phone}`);
+                }}
                 className="flex items-center justify-center gap-3 rounded-2xl bg-slate-950 px-8 py-4 text-xl font-black text-white shadow-xl transition-all"
               >
                 <Phone size={24} />

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Phone, ChevronDown } from 'lucide-react';
 import { CONTACT_INFO, SPECIAL_SERVICES, RIYADH_REGIONS } from '../constants';
+import { handleCallConversion } from '../lib/gtag';
 
 export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -80,6 +81,10 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href={`tel:${CONTACT_INFO.phone}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleCallConversion(`tel:${CONTACT_INFO.phone}`);
+              }}
               className="flex items-center gap-2 rounded-full bg-brand px-6 py-2.5 text-sm font-bold text-slate-950 shadow-lg shadow-brand/20 transition-all hover:bg-brand/90"
             >
               <Phone size={16} />

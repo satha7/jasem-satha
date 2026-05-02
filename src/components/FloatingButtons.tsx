@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Phone, MessageCircle } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
+import { handleCallConversion } from '../lib/gtag';
 
 export default function FloatingButtons() {
   const pulseAnimation = {
@@ -70,6 +71,10 @@ export default function FloatingButtons() {
           whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 0.9 }}
           href={`tel:${CONTACT_INFO.phone}`}
+          onClick={(e) => {
+            e.preventDefault();
+            handleCallConversion(`tel:${CONTACT_INFO.phone}`);
+          }}
           className="flex h-16 w-16 items-center justify-center rounded-full bg-brand text-slate-950 shadow-2xl"
           id="phone-float"
         >
