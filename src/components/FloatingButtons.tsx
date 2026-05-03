@@ -4,26 +4,6 @@ import { CONTACT_INFO } from '../constants';
 import { handleCallConversion } from '../lib/gtag';
 
 export default function FloatingButtons() {
-  const pulseAnimation = {
-    scale: [1, 1.1, 1],
-    opacity: [0.8, 1, 0.8],
-    filter: ["brightness(1)", "brightness(1.5)", "brightness(1)"],
-    boxShadow: [
-      "0 0 0px 0px rgba(245, 158, 11, 0)",
-      "0 0 30px 15px rgba(245, 158, 11, 0.4)",
-      "0 0 0px 0px rgba(245, 158, 11, 0)"
-    ]
-  };
-
-  const whatsappPulse = {
-    ...pulseAnimation,
-    boxShadow: [
-      "0 0 0px 0px rgba(37, 211, 102, 0)",
-      "0 0 30px 15px rgba(37, 211, 102, 0.4)",
-      "0 0 0px 0px rgba(37, 211, 102, 0)"
-    ]
-  };
-
   const transition = {
     duration: 2,
     repeat: Infinity,
@@ -31,56 +11,56 @@ export default function FloatingButtons() {
   };
 
   return (
-    <div className="fixed bottom-8 left-6 z-[9999] flex flex-col gap-8 md:bottom-10 md:left-10">
+    <div className="fixed bottom-6 left-4 z-[9999] flex flex-col gap-4 md:bottom-8 md:left-8">
       {/* WhatsApp Button */}
-      <div className="flex flex-col items-center gap-1">
-        <motion.span 
-          animate={{ opacity: [0.7, 1, 0.7] }}
-          transition={transition}
-          className="text-xs font-black text-[#25D366] bg-black/60 px-2 py-0.5 rounded-md backdrop-blur-md"
-        >
-          واتساب
-        </motion.span>
-        <motion.a
-          animate={whatsappPulse}
-          transition={transition}
-          whileHover={{ scale: 1.15 }}
-          whileTap={{ scale: 0.9 }}
+      <motion.div
+        whileHover={{ x: 4, y: 4 }}
+        whileTap={{ scale: 0.98 }}
+        className="relative group"
+      >
+        <div className="absolute inset-0 bg-[#a6a6a6] rounded-xl translate-x-1.5 translate-y-1.5 transition-transform group-hover:translate-x-0 group-hover:translate-y-0" />
+        <a
           href={`https://wa.me/${CONTACT_INFO.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl"
+          className="relative flex items-center gap-4 rounded-xl bg-[#10d361] p-3 px-6 text-white shadow-xl min-w-[220px]"
           id="whatsapp-float"
         >
-          <MessageCircle size={30} fill="currentColor" className="text-white fill-white" />
-        </motion.a>
-      </div>
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20">
+            <MessageCircle size={32} fill="white" className="text-white" />
+          </div>
+          <div className="flex flex-col text-right">
+            <span className="text-[10px] font-bold opacity-90 leading-tight">تراسل معنا</span>
+            <span className="text-2xl font-black leading-tight">واتساب الآن</span>
+          </div>
+        </a>
+      </motion.div>
       
       {/* Phone Button */}
-      <div className="flex flex-col items-center gap-1">
-        <motion.span 
-          animate={{ opacity: [0.7, 1, 0.7] }}
-          transition={transition}
-          className="text-xs font-black text-brand bg-black/60 px-2 py-0.5 rounded-md backdrop-blur-md"
-        >
-          اتصال سريع
-        </motion.span>
-        <motion.a
-          animate={pulseAnimation}
-          transition={transition}
-          whileHover={{ scale: 1.15 }}
-          whileTap={{ scale: 0.9 }}
+      <motion.div
+        whileHover={{ x: 4, y: 4 }}
+        whileTap={{ scale: 0.98 }}
+        className="relative group"
+      >
+        <div className="absolute inset-0 bg-[#a6a6a6] rounded-xl translate-x-1.5 translate-y-1.5 transition-transform group-hover:translate-x-0 group-hover:translate-y-0" />
+        <a
           href={`tel:${CONTACT_INFO.phone}`}
           onClick={(e) => {
             e.preventDefault();
             handleCallConversion(`tel:${CONTACT_INFO.phone}`);
           }}
-          className="flex h-16 w-16 items-center justify-center rounded-full bg-brand text-slate-950 shadow-2xl"
+          className="relative flex items-center gap-4 rounded-xl bg-[#0f172a] p-3 px-6 text-white shadow-xl min-w-[220px]"
           id="phone-float"
         >
-          <Phone size={34} fill="currentColor" />
-        </motion.a>
-      </div>
+          <div className="flex h-12 w-12 items-center justify-center">
+            <Phone size={32} className="text-[#ffb800]" fill="#ffb800" />
+          </div>
+          <div className="flex flex-col text-right">
+            <span className="text-[10px] font-bold text-[#ffb800] leading-tight">متاحون 24/7</span>
+            <span className="text-2xl font-black text-[#ffb800] leading-tight">اتصل بنا فوراً</span>
+          </div>
+        </a>
+      </motion.div>
     </div>
   );
 }
