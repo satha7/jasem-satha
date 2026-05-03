@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { RIYADH_REGIONS } from '../constants';
+import { RIYADH_REGIONS, SEO_KEYWORDS } from '../constants';
 
 export default function SEOSection() {
   return (
@@ -26,18 +26,25 @@ export default function SEOSection() {
               </h3>
               <div className="flex flex-wrap gap-2">
                 {region.neighborhoods.map((hood, hIdx) => (
-                  <span
-                    key={hIdx}
-                    className="rounded-lg bg-surface-lighter px-2.5 py-1.5 text-[11px] font-medium text-slate-300 border border-slate-700/50 transition-colors hover:border-brand hover:text-white"
-                  >
-                    سطحة {hood}
-                  </span>
+                  <div key={hIdx} className="group relative">
+                    <span
+                      className="rounded-lg bg-surface-lighter px-2.5 py-1.5 text-[11px] font-medium text-slate-300 border border-slate-700/50 transition-colors hover:border-brand hover:text-white"
+                    >
+                      سطحة {hood}
+                    </span>
+                    {/* Hidden text for context-rich SEO indexing without cluttering UI */}
+                    <div className="sr-only">
+                      Satha {hood}, Tow truck in {hood} Riyadh. 
+                      رقم سطحة {hood} افضل سطحة في {hood} سطحة هيدروليك {hood} سطحة عادية {hood} ارخص سطحة {hood} ونش سحب سيارات {hood}
+                    </div>
+                  </div>
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
         
+        {/* Expanded SEO Keywords Section */}
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <div className="rounded-[2.5rem] bg-surface-lighter p-8 border border-slate-700/50">
             <h4 className="mb-4 font-black text-white text-xl">لماذا تختار سطحة الرياض الخاصة بنا؟</h4>
@@ -46,19 +53,27 @@ export default function SEOSection() {
               <strong className="text-brand mx-1">سطحة هيدروليك</strong> 
               أو 
               <strong className="text-brand mx-1">سطحة تقدير</strong>، 
-              فنحن خيارك الأول. محركات بحث جوجل تتعرف علينا من خلال تواجدنا في كل حي مثل 
-              حي العقيق وحي النرجس وحي النسيم وغيرها. نحن نلتزم بسياسات جوجل الإعلانية ونوفر تجربة مستخدم واضحة وسريعة.
+              أو <strong className="text-brand mx-1">Satha Riyadh Towing</strong>، فنحن خيارك الأول. 
+              محركات بحث جوجل تتعرف علينا من خلال تواجدنا في كل حي مثل حي العقيق وحي النرجس وحي النسيم وغيرها. 
+              نحن نلتزم بسياسات جوجل الإعلانية ونوفر تجربة مستخدم واضحة وسريعة.
             </p>
           </div>
           
           <div className="rounded-[2.5rem] bg-gradient-to-r from-slate-900 to-slate-950 p-8 border border-slate-800 flex flex-col justify-center">
             <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mb-4">SEO Keywords & Search Visibility</p>
-            <div className="flex flex-wrap gap-3">
-               {RIYADH_REGIONS.flatMap(r => r.keywords).map((kw, kIdx) => (
-                 <span key={kIdx} className="text-[10px] bg-slate-800/50 text-slate-500 px-2 py-1 rounded border border-slate-800">
+            <div className="flex flex-wrap gap-2">
+               {RIYADH_REGIONS.flatMap(r => r.keywords).concat(SEO_KEYWORDS.english).map((kw, kIdx) => (
+                 <span key={kIdx} className="text-[9px] bg-slate-800/30 text-slate-500 px-2 py-0.5 rounded-full border border-slate-800/50">
                    #{kw.replace(/\s+/g, '_')}
                  </span>
                ))}
+            </div>
+            {/* Extremely detailed hidden SEO text for high-relevance search matching */}
+            <div className="sr-only">
+               {RIYADH_REGIONS.flatMap(r => r.neighborhoods).map((hood, i) => (
+                 <span key={i}>tow truck in {hood}, satha {hood}, car recovery {hood}, </span>
+               ))}
+               tow truck riyadh, recovery vehicle riyadh, breakdown services riyadh, cheap satha, fast satha, hydraulic satha riyadh, accidents riyadh recovery.
             </div>
           </div>
         </div>
